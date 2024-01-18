@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tumpa </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background: rgb(192, 187, 187);
+        img {
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0; 
+    bottom: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    /* // background: red; */
+    opacity: 0;
+  }
+    }
+    @keyframes bang {
+  0% {
+    transform: translate3d(0,0,0);
+    opacity: 1; 
+  }
+  
+  30% {
+    top: -150px;
+  }
+  70% {
+    opacity: 0.9
+  }
+  95% {
+    top: 100px; 
+  } 
+  
+  /* // 50% {
+  //   transform: translate3d(0,-100px,100px);
+  //   opacity: 0;
+  // } */
+}
+
+    .photo {
+        width: 320px;
+        height: 320px;
+        box-shadow: 16px 14px 20px #0000008c;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(148, 135, 242);
+        flex-wrap: wrap;
+       
+    }
+    .photo::before{
+        content: "";
+        background-image: conic-gradient(
+            #ff0052 20deg,
+            transparent 120deg
+        );
+        width: 150%;
+        height: 150%;
+        position: absolute;
+        animation: rotate 2s linear infinite;
+    }
+    .text{
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    .photo::after{
+        content: "";
+        width: 300px;
+        height: 300px;
+        background: #101010;
+        background-image: url("animated\ text/tumpa.jpg");
+        background-size: cover;
+        
+        position: absolute;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0052;
+        font-size: larger;
+        letter-spacing: 5px;
+        box-shadow: inset 20px 20px 20px #0000008c;
+    }
+    @keyframes rotate {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(-360deg);
+        }
+    }
+    
+
+</style>
+
+<body>
+    <div class="video-container">
+        <div class="photo"></div>
+    </div>
+  
+</body>
+<body><h1 style="color: rgb(20, 20, 20); margin-top: 20px;">I love You</h1>
+    <button class="hoverme" style="height: 50px; width: 200px; margin-top: 20px; border: none; background-color: azure; "> press here</button>
+</body>
+<script>
+    document.querySelector('.hoverme').addEventListener('click', function(){  
+  function random(max){
+      return Math.random() * (max - 0) + 0;
+  } 
+let vid = document.querySelector('.video-container');
+  let c = document.createElement('div');
+    
+  for (let i=0; i<30; i++) {
+    let randomSize = Math.random() * (65 - 40) + 40;
+    let styles = '\
+    transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(300) - 150) + 'px, 50px) \
+    rotate(' + random(360) + 'deg) scale(0.5);\
+                  background: transparent;\
+                  width: ' +randomSize + 'px;\
+                  height: ' +randomSize + 'px;\
+                  animation: bang 1900ms ease-out forwards;\
+                  opacity: 0';              
+      
+    let e = document.createElement("IMG");
+        e.setAttribute("src", "https://iconarchive.com/download/i66645/designbolts/free-valentine-heart/Heart.ico");
+    e.style.cssText = styles.toString();    
+    c.appendChild(e);  
+}
+  
+  vid.appendChild(c)
+  
+  setTimeout(() => {
+      console.log('c elem',c)
+      // vid.innerHTML = ""
+      vid.removeChild(c)
+    }, 1900)
+}, false)
+</script>
+
+</html>
